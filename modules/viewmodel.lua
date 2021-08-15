@@ -51,6 +51,8 @@ function viewmodel.get()
             if OriginalMaterial then
                 arm_part.Color = OriginalMaterial.Value
             end
+
+            arm_part.Transparency = 0
         end
     end
 
@@ -59,6 +61,7 @@ function viewmodel.get()
 
         for _,weapon_part in pairs (arms:GetChildren()) do
             if not weapon_part:IsA("BasePart") and not weapon_part:IsA("Part") then continue end
+            if weapon_part.Transparency == 1 then continue end
     
             table.insert(weapon_parts, weapon_part)
         end
@@ -77,6 +80,11 @@ function viewmodel.get()
             local OriginalMaterial = weapon_part:FindFirstChild("OriginalMaterial")
             if OriginalMaterial then
                 weapon_part.Material = OriginalMaterial.Value
+            end
+
+            local OriginalTransparency = weapon_part:FindFirstChild("OriginalTransparency")
+            if OriginalTransparency then
+                weapon_part.Transparency = OriginalTransparency.Value
             end
 
             if weapon_part:IsA("MeshPart") then
@@ -116,6 +124,8 @@ function viewmodel.get()
             if OriginalTexture then
                 glove.TextureID = OriginalTexture.Value
             end
+
+            glove.Transparency = 0
         end
     end
 
@@ -142,10 +152,11 @@ function viewmodel.get()
             end
 
             local OriginalTexture = sleeve:FindFirstChild("OriginalTexture")
-
             if OriginalTexture then
                 sleeve.TextureID = OriginalTexture.Value
             end
+
+            sleeve.Transparency = 0
         end
     end
 
@@ -167,6 +178,7 @@ local function OnCameraChildAdded(Child)
     for _,gun_part in pairs (gun_parts) do
         create("Color3Value", {Value = gun_part.Color, Name = "OriginalColor"}, gun_part)
         create("StringValue", {Value = gun_part.Material.Name, Name = "OriginalMaterial"}, gun_part)
+        create("NumberValue", {Value = gun_part.Transparency, Name = "OriginalTransparency"}, gun_part)
 
         if gun_part:IsA("MeshPart") then
             create("StringValue", {Value = gun_part.TextureID, Name = "OriginalTexture"}, gun_part)
