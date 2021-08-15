@@ -190,4 +190,4 @@ end
 camera.ChildAdded:Connect(OnCameraChildAdded)
 for _,Child in pairs (camera:GetChildren()) do OnCameraChildAdded(Child) end
 
-return module
+return viewmodel
