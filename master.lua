@@ -1,3 +1,5 @@
+local viewmodel = loadstring(game:HttpGet("https://raw.githubusercontent.com/taskmanager-code/counterblox/main/modules/viewmodel.lua"))()
+
 viewmodel.on_new_viewmodel:Connect(function(module)
     local arm_parts = module.get_arm_parts()
     local weapon_parts = module.get_weapon_parts()
